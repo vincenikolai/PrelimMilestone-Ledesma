@@ -39,7 +39,7 @@ a {
   margin: 0 auto;
 }
 
-/* --- Flexbox Navigation (W2 Requirement) --- */
+/* --- Flexbox Navigation (Mobile-First Default) --- */
 .site-header {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-color);
@@ -67,7 +67,7 @@ a {
 }
 
 .nav-links {
-  display: flex;
+  display: none; /* Mobile-first: hidden by default on micro/small viewports */
   gap: var(--spacing-lg);
   list-style: none;
 }
@@ -77,9 +77,9 @@ a {
   transition: color 0.2s ease;
 }
 
-/* --- Sections & Hero --- */
+/* --- Hero & Profile Photo --- */
 section {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .hero-section {
@@ -88,21 +88,19 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
 }
 
-.avatar-placeholder {
-  display: grid;
-  place-items: center;
-  width: 7rem;
-  aspect-ratio: 1;
-  margin: 0 auto var(--spacing-lg);
-  border: 2px solid var(--primary-color);
+.profile-photo {
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 50%;
-  background: linear-gradient(145deg, #1e293b, #172554);
-  color: var(--primary-color);
-  font-size: 3rem;
-  font-weight: 900;
+  object-fit: cover;
+  object-position: top center;
+  border: 3px solid var(--primary-color);
+  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+  margin: 0 auto var(--spacing-md);
+  display: block;
 }
 
 .hero-content h1 {
@@ -121,7 +119,7 @@ section {
   margin: 0 auto var(--spacing-lg);
 }
 
-/* --- CSS Grid Layouts (W2 Requirement) --- */
+/* --- Grid Layouts --- */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -148,14 +146,13 @@ section {
 /* --- Projects / Gallery Grid --- */
 .projects-controls {
   display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
-  flex-wrap: wrap;
 }
 
 #searchInput {
-  flex: 1;
-  min-width: 250px;
+  width: 100%;
   padding: 0.75rem 1rem;
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
@@ -165,8 +162,7 @@ section {
 
 .gallery-grid {
   display: grid;
-  /* auto-fit and minmax for fluid responsive wrapping */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--spacing-lg);
 }
 
@@ -278,8 +274,9 @@ section {
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
-  margin-bottom: var(--spacing-lg); /* Add this line to push the cards down */
+  margin-bottom: var(--spacing-lg);
 }
+
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -331,6 +328,7 @@ section {
 .form-group input.invalid {
   border-color: #f87171;
 }
+
 .form-group input.invalid + .error-text {
   display: block;
 }
@@ -359,15 +357,78 @@ section {
   justify-content: center;
 }
 
-/* --- Mobile-First Media Queries (W2 Requirement) --- */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none; /* Simplification for mobile */
+/* ==========================================================================
+   MOBILE-FIRST MEDIA QUERIES (Progressive Enhancement)
+   ========================================================================== */
+
+/* 1. Micro-Mobile Devices (325px and up) */
+@media (min-width: 325px) {
+  .container {
+    width: 92%;
+  }
+  .btn {
+    padding: 0.65rem 1.25rem;
   }
 }
 
+/* 2. Small Mobile Devices (375px and up) */
+@media (min-width: 375px) {
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+}
+
+/* 3. Large Mobile Devices (425px and up) */
+@media (min-width: 425px) {
+  .profile-photo {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+/* 4. Extra Large Mobile / Phablets (450px and up) */
+@media (min-width: 450px) {
+  .projects-controls {
+    flex-direction: row;
+    align-items: center;
+  }
+  #searchInput {
+    min-width: 250px;
+  }
+}
+
+/* 5. Tablets & Medium Displays (768px and up) */
 @media (min-width: 768px) {
+  section {
+    padding: 4rem 0;
+  }
+  .nav-links {
+    display: flex; /* Reveal full desktop menu */
+  }
   .about-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 6. Laptops & Small Desktops (1024px and up) */
+@media (min-width: 1024px) {
+  section {
+    padding: 5rem 0;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 7. Large Desktop Displays (1440px and up) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+  .hero-content h1 {
+    font-size: 4.5rem;
   }
 }
