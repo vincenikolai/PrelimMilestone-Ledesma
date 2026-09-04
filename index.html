@@ -13,15 +13,23 @@
   </head>
   <body>
     <header class="site-header">
-      <nav class="nav-container">
-        <div class="logo">Vince<span>.dev</span></div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="highlight">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-        </ul>
-      </nav>
-    </header>
+  <nav class="nav-container">
+    <div class="logo">Vince<span>.dev</span></div>
+    <button
+      id="menuToggle"
+      class="menu-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="highlight">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </nav>
+</header>
 
     <main>
       <!-- Hero Section -->

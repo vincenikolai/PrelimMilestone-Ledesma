@@ -13,15 +13,23 @@
   </head>
   <body>
     <header class="site-header">
-      <nav class="nav-container">
-        <div class="logo">Vince<span>.dev</span></div>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" class="highlight">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-        </ul>
-      </nav>
-    </header>
+  <nav class="nav-container">
+    <div class="logo">Vince<span>.dev</span></div>
+    <button
+      id="menuToggle"
+      class="menu-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="highlight">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+  </nav>
+</header>
 
     <main>
       <section id="about" class="about-section" style="min-height: 80vh;">
@@ -134,5 +142,6 @@
         <p>&copy; 2026 Vince Nikolai. All rights reserved.</p>
       </div>
     </footer>
+    <script src="app.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-/* --- CSS Custom Properties (W2 Requirement) --- */
+/* --- CSS Custom Properties --- */
 :root {
   --bg-dark: #020617; /* slate-950 */
   --bg-surface: #0f172a; /* slate-900 */
@@ -25,7 +25,7 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   line-height: 1.6;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem); /* Fluid typography */
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
 }
 
 a {
@@ -39,13 +39,13 @@ a {
   margin: 0 auto;
 }
 
-/* --- Flexbox Navigation (Mobile-First Default) --- */
+/* --- Navigation Header --- */
 .site-header {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .nav-container {
@@ -55,6 +55,7 @@ a {
   padding: var(--spacing-md) var(--spacing-lg);
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .logo {
@@ -66,15 +67,51 @@ a {
   color: var(--primary-color);
 }
 
-.nav-links {
-  display: none; /* Mobile-first: hidden by default on micro/small viewports */
-  gap: var(--spacing-lg);
-  list-style: none;
+/* Hamburger Toggle Button (Mobile Default) */
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
+.menu-toggle:hover {
   color: var(--primary-color);
+}
+
+/* Mobile Dropdown Navigation */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  gap: 1.25rem;
+  list-style: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.nav-links.active {
+  display: flex !important;
+}
+
+.nav-links a {
+  font-weight: 500;
   transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.highlight {
+  color: var(--primary-color);
 }
 
 /* --- Hero & Profile Photo --- */
@@ -357,11 +394,7 @@ section {
   justify-content: center;
 }
 
-/* ==========================================================================
-   MOBILE-FIRST MEDIA QUERIES (Progressive Enhancement)
-   ========================================================================== */
-
-/* 1. Micro-Mobile Devices (325px and up) */
+/* --- Mobile-First Media Queries --- */
 @media (min-width: 325px) {
   .container {
     width: 92%;
@@ -371,14 +404,12 @@ section {
   }
 }
 
-/* 2. Small Mobile Devices (375px and up) */
 @media (min-width: 375px) {
   .hero-content h1 {
     font-size: 2.25rem;
   }
 }
 
-/* 3. Large Mobile Devices (425px and up) */
 @media (min-width: 425px) {
   .profile-photo {
     width: 9rem;
@@ -386,7 +417,6 @@ section {
   }
 }
 
-/* 4. Extra Large Mobile / Phablets (450px and up) */
 @media (min-width: 450px) {
   .projects-controls {
     flex-direction: row;
@@ -397,13 +427,24 @@ section {
   }
 }
 
-/* 5. Tablets & Medium Displays (768px and up) */
+/* Tablet & Desktop Navigation Overrides */
 @media (min-width: 768px) {
   section {
     padding: 4rem 0;
   }
+  .menu-toggle {
+    display: none !important;
+  }
   .nav-links {
-    display: flex; /* Reveal full desktop menu */
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    gap: var(--spacing-lg);
   }
   .about-grid {
     grid-template-columns: 1fr 1fr;
@@ -413,7 +454,6 @@ section {
   }
 }
 
-/* 6. Laptops & Small Desktops (1024px and up) */
 @media (min-width: 1024px) {
   section {
     padding: 5rem 0;
@@ -423,7 +463,6 @@ section {
   }
 }
 
-/* 7. Large Desktop Displays (1440px and up) */
 @media (min-width: 1440px) {
   .container {
     max-width: 1320px;
