@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vince Nikolai | Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav-container">
+        <div class="logo">Vince<span>.dev</span></div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="projects" class="projects-section" style="min-height: 80vh;">
+        <div class="container">
+          <h2>Project Gallery</h2>
+
+          <div class="projects-controls mt-6">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search my projects by name..."
+              aria-label="Search projects"
+            />
+            <button id="showBookmarksBtn" class="btn btn-secondary">
+              <i class="fa-solid fa-bookmark"></i> Bookmarks
+            </button>
+          </div>
+
+          <div id="loadingSpinner" class="spinner hidden">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> Fetching repositories...
+          </div>
+
+          <div id="errorContainer" class="error-message hidden"></div>
+
+          <div id="projectGallery" class="gallery-grid">
+            <!-- Cards injected via JS DOM Manipulation -->
+          </div>
+
+          <div class="pagination-controls hidden" id="paginationControls">
+            <button id="prevPage" class="btn btn-secondary">
+              <i class="fa-solid fa-chevron-left"></i> Prev
+            </button>
+            <span id="pageInfo">Page 1 of X</span>
+            <button id="nextPage" class="btn btn-secondary">
+              Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2026 Vince Nikolai. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
